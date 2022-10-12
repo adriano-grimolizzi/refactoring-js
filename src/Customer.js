@@ -8,22 +8,13 @@ class Customer {
     addRental = (rental) => {
         this.rentals.push(rental)
     }
+    generateStatement = () => `
+        Rental Record for ${this.name}:
+        Amount owed is ${this.getTotalCharge()}.
+        You earned ${this.getTotalFrequentRenterPoints()} frequent renter points.`
 
-    generateStatement() {
-        let totalAmount = 0
-        let frequentRenterPoints = 0
-    
-        let result = `Rental Record for ${this.name}:\n`
-    
-        this.rentals.forEach(rental => {
-            totalAmount += rental.getCharge()
-            frequentRenterPoints += rental.getFrequentRenterPoints()
-        })
-        // add footer lines
-        result += `Amount owed is ${totalAmount}.\nYou earned ${frequentRenterPoints} frequent renter points.`
-    
-        return result
-    }
+    getTotalCharge = () => this.rentals.reduce((previousValue, currentValue) => previousValue + currentValue.getCharge(), 0)
+    getTotalFrequentRenterPoints = () => this.rentals.reduce((previousValue, currentValue) => previousValue + currentValue.getFrequentRenterPoints(), 0)
 }
 
 module.exports = Customer

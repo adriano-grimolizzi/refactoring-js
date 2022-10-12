@@ -28,7 +28,9 @@ describe('Customer', () => {
         customer1.addRental(rental2)
         customer1.addRental(rental3)
 
-        expect(customer1.generateStatement()).toEqual(
-            `Rental Record for James McGill:\nAmount owed is 17.\nYou earned 4 frequent renter points.`)
+        expect(customer1.generateStatement()).toEqual(`
+        Rental Record for James McGill:
+        Amount owed is 17.
+        You earned 4 frequent renter points.`)
     })
 })

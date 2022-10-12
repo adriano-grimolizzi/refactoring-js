@@ -27,6 +27,7 @@ describe('Customer', () => {
         customer1.addRental(rental1)
         customer1.addRental(rental2)
         customer1.addRental(rental3)
+        
         it('should generate an HTML statement for a customer', () => {
             expect(customer1.generateHtmlStatement()).toEqual(`
             <h1>Rental Record for <em>James McGill</em></h1>

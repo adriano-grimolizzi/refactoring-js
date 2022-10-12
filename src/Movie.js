@@ -25,6 +25,7 @@ class Movie {
         }
         return result
     }
+    getFrequentRenterPoints = (daysRented) => (this.priceCode === PriceCode.NEW_RELEASE && daysRented > 1) ? 2 : 1
 }
 
 module.exports = Movie

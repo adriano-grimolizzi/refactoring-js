@@ -6,7 +6,7 @@ class Rental {
         this.daysRented = daysRented
     }
     getCharge = () => this.movie.getCharge(this.daysRented)
-    getFrequentRenterPoints = () => (this.movie.priceCode === PriceCode.NEW_RELEASE && this.daysRented > 1) ? 2 : 1
+    getFrequentRenterPoints = () => this.movie.getFrequentRenterPoints(this.daysRented)
 }
 
 module.exports = Rental

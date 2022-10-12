@@ -11,3 +11,7 @@ The `generateStatement()` method is too long. Smaller pieces of code are more ma
 **What to extract?** An obvious piece here is the switch statement.
 
 **How to extract?** Look for any variable in the fragment that is local in scope to the parent method. This segment uses two: `rental` (not modified) and `totalAmount` (modified). Any non modified variable can be passed in as a parameter. Modified variables need more care. If there is only one, it can be returned. `totalAmount` is initialised to 0 each time around the loop and is not altered until the switch gets to it, so it's possible to just assign the result.
+
+## Move Method
+
+The `getAmount()` method uses information from the `Rental` class only. In most cases, a method should be on the object whose data it uses, thus it should be moved to that class.

@@ -7,23 +7,8 @@ function generateStatement(customer) {
     let result = `Rental Record for ${customer.name}:\n`
 
     customer.rentals.forEach(rental => {
-        switch (rental.movie.priceCode) {
-            case PriceCode.REGULAR:
-                totalAmount += 2
-                if (rental.daysRented > 2) {
-                    totalAmount += (rental.daysRented - 2) * 1.5
-                }
-                break
-            case PriceCode.NEW_RELEASE:
-                totalAmount += rental.daysRented * 3
-                break
-            case PriceCode.CHILDREN:
-                totalAmount += 1.5
-                if (rental.daysRented > 3) {
-                    totalAmount += (rental.daysRented - 3) * 1.5
-                }
-                break
-        }
+        totalAmount += getAmount(rental)
+
         // add frequent renter points
         frequentRenterPoints++
 
@@ -35,6 +20,28 @@ function generateStatement(customer) {
     // add footer lines
     result += `Amount owed is ${totalAmount}.\nYou earned ${frequentRenterPoints} frequent renter points.`
 
+    return result
+}
+
+function getAmount(rental) {
+    let result = 0
+    switch (rental.movie.priceCode) {
+        case PriceCode.REGULAR:
+            result += 2
+            if (rental.daysRented > 2) {
+                result += (rental.daysRented - 2) * 1.5
+            }
+            break
+        case PriceCode.NEW_RELEASE:
+            result += rental.daysRented * 3
+            break
+        case PriceCode.CHILDREN:
+            result += 1.5
+            if (rental.daysRented > 3) {
+                result += (rental.daysRented - 3) * 1.5
+            }
+            break
+    }
     return result
 }
 
